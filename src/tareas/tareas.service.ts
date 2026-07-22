@@ -209,14 +209,6 @@ export class TareasService {
    * @param etiquetas Etiquetas originales.
    * @returns Arreglo de etiquetas normalizadas.
    */
-  /**
-   * Limpia y elimina etiquetas repetidas sin distinguir mayúsculas.
-   *
-   * Conserva la primera variante escrita de cada etiqueta.
-   *
-   * @param etiquetas Etiquetas originales.
-   * @returns Arreglo de etiquetas normalizadas.
-   */
   private normalizarEtiquetas(etiquetas: string[]): string[] {
     const etiquetasUnicas: string[] = [];
     const etiquetasRegistradas = new Set<string>();
