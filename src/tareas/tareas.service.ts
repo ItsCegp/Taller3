@@ -201,34 +201,43 @@ export class TareasService {
     return true;
   }
 
-/**
- * Limpia y elimina etiquetas repetidas sin distinguir mayúsculas.
- *
- * Conserva la primera variante escrita de cada etiqueta.
- *
- * @param etiquetas Etiquetas originales.
- * @returns Arreglo de etiquetas normalizadas.
- */
-private normalizarEtiquetas(etiquetas: string[]): string[] {
-  const etiquetasUnicas: string[] = [];
-  const etiquetasRegistradas = new Set<string>();
+  /**
+   * Limpia y elimina etiquetas repetidas sin distinguir mayúsculas.
+   *
+   * Conserva la primera variante escrita de cada etiqueta.
+   *
+   * @param etiquetas Etiquetas originales.
+   * @returns Arreglo de etiquetas normalizadas.
+   */
+  /**
+   * Limpia y elimina etiquetas repetidas sin distinguir mayúsculas.
+   *
+   * Conserva la primera variante escrita de cada etiqueta.
+   *
+   * @param etiquetas Etiquetas originales.
+   * @returns Arreglo de etiquetas normalizadas.
+   */
+  private normalizarEtiquetas(etiquetas: string[]): string[] {
+    const etiquetasUnicas: string[] = [];
+    const etiquetasRegistradas = new Set<string>();
 
-  for (const etiqueta of etiquetas) {
-    const etiquetaLimpia = etiqueta.trim();
+    for (const etiqueta of etiquetas) {
+      const etiquetaLimpia = etiqueta.trim();
 
-    if (etiquetaLimpia.length === 0) {
-      continue;
+      if (etiquetaLimpia.length === 0) {
+        continue;
+      }
+
+      const claveNormalizada = etiquetaLimpia.toLowerCase();
+
+      if (etiquetasRegistradas.has(claveNormalizada)) {
+        continue;
+      }
+
+      etiquetasRegistradas.add(claveNormalizada);
+      etiquetasUnicas.push(etiquetaLimpia);
     }
 
-    const claveNormalizada = etiquetaLimpia.toLowerCase();
-
-    if (etiquetasRegistradas.has(claveNormalizada)) {
-      continue;
-    }
-
-    etiquetasRegistradas.add(claveNormalizada);
-    etiquetasUnicas.push(etiquetaLimpia);
+    return etiquetasUnicas;
   }
-
-  return etiquetasUnicas;
 }
