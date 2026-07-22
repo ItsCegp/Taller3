@@ -201,21 +201,34 @@ export class TareasService {
     return true;
   }
 
-  /**
-   * Limpia y elimina etiquetas repetidas.
-   *
-   * @param etiquetas Etiquetas originales.
-   * @returns Arreglo de etiquetas normalizadas.
-   */
-  private normalizarEtiquetas(etiquetas: string[]): string[] {
-    const etiquetasLimpias = etiquetas
-      .map((etiqueta) => etiqueta.trim())
-      .filter((etiqueta) => etiqueta.length > 0);
+/**
+ * Limpia y elimina etiquetas repetidas sin distinguir mayúsculas.
+ *
+ * Conserva la primera variante escrita de cada etiqueta.
+ *
+ * @param etiquetas Etiquetas originales.
+ * @returns Arreglo de etiquetas normalizadas.
+ */
+private normalizarEtiquetas(etiquetas: string[]): string[] {
+  const etiquetasUnicas: string[] = [];
+  const etiquetasRegistradas = new Set<string>();
 
-    return Array.from(
-      new Map(
-        etiquetasLimpias.map((etiqueta) => [etiqueta.toLowerCase(), etiqueta]),
-      ).values(),
-    );
+  for (const etiqueta of etiquetas) {
+    const etiquetaLimpia = etiqueta.trim();
+
+    if (etiquetaLimpia.length === 0) {
+      continue;
+    }
+
+    const claveNormalizada = etiquetaLimpia.toLowerCase();
+
+    if (etiquetasRegistradas.has(claveNormalizada)) {
+      continue;
+    }
+
+    etiquetasRegistradas.add(claveNormalizada);
+    etiquetasUnicas.push(etiquetaLimpia);
   }
+
+  return etiquetasUnicas;
 }
