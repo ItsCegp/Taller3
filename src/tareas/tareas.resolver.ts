@@ -1,5 +1,7 @@
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 
+import { AccionAuditoria } from '../comun/aop/accion-auditoria.enum';
+import { Auditar } from '../comun/aop/auditar.decorator';
 import { ActualizarEtiquetasTareaInput } from './dto/actualizar-etiquetas-tarea.input';
 import { ActualizarTareaInput } from './dto/actualizar-tarea.input';
 import { AsignarUsuarioTareaInput } from './dto/asignar-usuario-tarea.input';
@@ -49,22 +51,31 @@ export class TareasResolver {
 
   /**
    * Registra una tarea.
+   *
+   * @param input Datos necesarios para crear la tarea.
+   * @returns Tarea creada.
    */
   @Mutation(() => Tarea, {
     name: 'crearTarea',
     description: 'Crea una nueva tarea',
   })
+  @Auditar(AccionAuditoria.CREAR_TAREA)
   crearTarea(@Args('input') input: CrearTareaInput): Promise<Tarea> {
     return this.tareasService.crear(input);
   }
 
   /**
    * Actualiza los datos generales de una tarea.
+   *
+   * @param id Identificador único de la tarea.
+   * @param input Datos que serán modificados.
+   * @returns Tarea actualizada.
    */
   @Mutation(() => Tarea, {
     name: 'actualizarTarea',
     description: 'Actualiza los datos de una tarea',
   })
+  @Auditar(AccionAuditoria.ACTUALIZAR_TAREA)
   actualizarTarea(
     @Args('id', {
       type: () => ID,
@@ -77,11 +88,16 @@ export class TareasResolver {
 
   /**
    * Cambia el estado actual de una tarea.
+   *
+   * @param id Identificador único de la tarea.
+   * @param input Nuevo estado de la tarea.
+   * @returns Tarea actualizada.
    */
   @Mutation(() => Tarea, {
     name: 'cambiarEstadoTarea',
     description: 'Cambia el estado de una tarea',
   })
+  @Auditar(AccionAuditoria.CAMBIAR_ESTADO_TAREA)
   cambiarEstadoTarea(
     @Args('id', {
       type: () => ID,
@@ -94,11 +110,16 @@ export class TareasResolver {
 
   /**
    * Sustituye las etiquetas de una tarea.
+   *
+   * @param id Identificador único de la tarea.
+   * @param input Nuevas etiquetas de la tarea.
+   * @returns Tarea actualizada.
    */
   @Mutation(() => Tarea, {
     name: 'actualizarEtiquetasTarea',
     description: 'Actualiza las etiquetas de una tarea',
   })
+  @Auditar(AccionAuditoria.ACTUALIZAR_ETIQUETAS_TAREA)
   actualizarEtiquetasTarea(
     @Args('id', {
       type: () => ID,
@@ -111,11 +132,16 @@ export class TareasResolver {
 
   /**
    * Cambia el usuario responsable de una tarea.
+   *
+   * @param id Identificador único de la tarea.
+   * @param input Nuevo usuario responsable.
+   * @returns Tarea actualizada.
    */
   @Mutation(() => Tarea, {
     name: 'asignarUsuarioTarea',
     description: 'Asigna un usuario como responsable de una tarea',
   })
+  @Auditar(AccionAuditoria.ASIGNAR_USUARIO_TAREA)
   asignarUsuarioTarea(
     @Args('id', {
       type: () => ID,
@@ -128,11 +154,15 @@ export class TareasResolver {
 
   /**
    * Elimina una tarea.
+   *
+   * @param id Identificador único de la tarea.
+   * @returns Confirmación de la eliminación.
    */
   @Mutation(() => Boolean, {
     name: 'eliminarTarea',
     description: 'Elimina una tarea registrada',
   })
+  @Auditar(AccionAuditoria.ELIMINAR_TAREA)
   eliminarTarea(
     @Args('id', {
       type: () => ID,
