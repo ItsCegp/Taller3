@@ -9,6 +9,7 @@ import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
 import { ProyectosModule } from './proyectos/proyectos.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { TareasModule } from './tareas/tareas.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 
     UsuariosModule,
     ProyectosModule,
+    TareasModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
