@@ -10,6 +10,7 @@ import { AppService } from './app.service';
 import { ProyectosModule } from './proyectos/proyectos.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { TareasModule } from './tareas/tareas.module';
+import { AuditoriaModule } from './comun/aop/auditoria.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { TareasModule } from './tareas/tareas.module';
       graphiql: true,
     }),
 
+    AuditoriaModule,
     UsuariosModule,
     ProyectosModule,
     TareasModule,
