@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 @Module({
   imports: [
@@ -31,6 +32,8 @@ import { AppService } from './app.service';
       sortSchema: true,
       graphiql: true,
     }),
+
+    UsuariosModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
