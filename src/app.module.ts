@@ -5,8 +5,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
-import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
+import { HealthResolver } from './app.resolver';
 import { ProyectosModule } from './proyectos/proyectos.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { TareasModule } from './tareas/tareas.module';
@@ -42,6 +42,6 @@ import { AuditoriaModule } from './comun/aop/auditoria.module';
     TareasModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver],
+  providers: [AppService, HealthResolver],
 })
 export class AppModule {}

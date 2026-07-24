@@ -1,10 +1,10 @@
 import { Query, Resolver } from '@nestjs/graphql';
 
 /**
- * Resolver principal para verificar el funcionamiento de GraphQL.
+ * Resolver de estado para verificar que la API GraphQL responde.
  */
 @Resolver()
-export class AppResolver {
+export class HealthResolver {
   /**
    * Devuelve un mensaje de confirmación.
    *
