@@ -4,6 +4,7 @@ import {
   ArrayUnique,
   IsArray,
   IsEnum,
+  IsNotEmpty,
   IsOptional,
   IsString,
   IsUUID,
@@ -26,6 +27,9 @@ export class CrearTareaInput {
   @IsString({
     message: 'El título debe ser una cadena de texto',
   })
+  @IsNotEmpty({
+    message: 'El título no puede estar vacío',
+  })
   @Length(2, 150, {
     message: 'El título debe tener entre 2 y 150 caracteres',
   })
@@ -39,6 +43,9 @@ export class CrearTareaInput {
   })
   @IsString({
     message: 'La descripción debe ser una cadena de texto',
+  })
+  @IsNotEmpty({
+    message: 'La descripción no puede estar vacía',
   })
   @Length(5, 2000, {
     message: 'La descripción debe tener entre 5 y 2000 caracteres',

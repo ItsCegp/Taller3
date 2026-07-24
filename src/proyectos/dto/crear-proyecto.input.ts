@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsString, Length } from 'class-validator';
 
 /**
  * Datos necesarios para registrar un proyecto.
@@ -15,6 +15,9 @@ export class CrearProyectoInput {
   @IsString({
     message: 'El nombre debe ser una cadena de texto',
   })
+  @IsNotEmpty({
+    message: 'El nombre no puede estar vacío',
+  })
   @Length(2, 120, {
     message: 'El nombre debe tener entre 2 y 120 caracteres',
   })
@@ -28,6 +31,9 @@ export class CrearProyectoInput {
   })
   @IsString({
     message: 'La descripción debe ser una cadena de texto',
+  })
+  @IsNotEmpty({
+    message: 'La descripción no puede estar vacía',
   })
   @Length(5, 1000, {
     message: 'La descripción debe tener entre 5 y 1000 caracteres',
