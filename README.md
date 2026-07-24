@@ -4,6 +4,12 @@ Servidor desarrollado con NestJS que expone una API GraphQL para administrar usu
 
 El proyecto aplica Programación Orientada a Aspectos mediante decoradores e interceptores, utiliza GitFlow para organizar el desarrollo y sigue principios de Clean Code.
 
+## Repositorio público
+
+El código fuente del proyecto está disponible en GitHub:
+
+https://github.com/ItsCegp/Taller3
+
 ## Funcionalidades
 
 La API permite:
@@ -618,6 +624,7 @@ database.sqlite
 
 El repositorio incluye `.env.example` como plantilla de configuración.
 
-## Autor
+## Autores
 
 Carlos Eduardo González Pineda
+Santiago Martinez Hernandez
